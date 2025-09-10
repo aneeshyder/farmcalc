@@ -68,65 +68,66 @@ export default function LandDealCalculator() {
 
   return (
     <div className="land-calculator">
-    <h2>Land Deal Calculator</h2>
-  
-    <div className="controls">
-      <label>
-        Global Avg Rate (per sq ft):{" "}
-        <input
-          type="number"
-          value={rate}
-          onChange={(e) => setRate(Number(e.target.value))}
-        />
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          checked={useActual}
-          onChange={(e) => setUseActual(e.target.checked)}
-        />
-        Use Actual Area
-      </label>
+      <h2>Land Deal Calculator</h2>
+
+      <div className="controls">
+        <label>
+          Global Avg Rate (per sq ft):{" "}
+          <input
+            type="number"
+            value={rate}
+            onChange={(e) => setRate(Number(e.target.value))}
+          />
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={useActual}
+            onChange={(e) => setUseActual(e.target.checked)}
+          />
+          Use Actual Area
+        </label>
+      </div>
+      <div className="table-wrapper">
+
+        <table border={1} cellPadding={5} style={{ borderCollapse: "collapse" }}>
+          <thead>
+            <tr>
+              <th>Farm No</th>
+              <th>Area (sq mt)</th>
+              <th>Area (sq ft)</th>
+              <th>Rate (₹/sq ft)</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {FARMS.map((farm, index) => {
+              const areaSqMt = useActual ? farm.actualArea : farm.paperArea;
+              const areaSqFt = areas[index];
+              return (
+                <tr key={farm.id}>
+                  <td>{farm.farmNo}</td>
+                  <td>{areaSqMt.toLocaleString("en-IN")}</td>
+                  <td>{areaSqFt.toFixed(0).toLocaleString("en-IN")}</td>
+                  <td>
+                    <input
+                      type="number"
+                      value={farmRates[index].toFixed(2)}
+                      onChange={(e) =>
+                        handleFarmRateChange(index, Number(e.target.value))
+                      }
+                      style={{ width: "90px" }}
+                    />
+                  </td>
+                  <td>{formatCurrency(farmValues[index])}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <h3 className="total-value">Total Value: {formatCurrency(totalValue)}</h3>
     </div>
-  
-    <table border={1} cellPadding={5} style={{ borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th>Farm No</th>
-            <th>Area (sq mt)</th>
-            <th>Area (sq ft)</th>
-            <th>Rate (₹/sq ft)</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          {FARMS.map((farm, index) => {
-            const areaSqMt = useActual ? farm.actualArea : farm.paperArea;
-            const areaSqFt = areas[index];
-            return (
-              <tr key={farm.id}>
-                <td>{farm.farmNo}</td>
-                <td>{areaSqMt.toLocaleString("en-IN")}</td>
-                <td>{areaSqFt.toFixed(0).toLocaleString("en-IN")}</td>
-                <td>
-                  <input
-                    type="number"
-                    value={farmRates[index].toFixed(2)}
-                    onChange={(e) =>
-                      handleFarmRateChange(index, Number(e.target.value))
-                    }
-                    style={{ width: "90px" }}
-                  />
-                </td>
-                <td>{formatCurrency(farmValues[index])}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-  
-    <h3>Total Value: {formatCurrency(totalValue)}</h3>
-  </div>
-  
+
   );
 }
