@@ -42,6 +42,14 @@ a {
 }
 
 /* Table wrapper for horizontal scrolling */
+
+.land-calculator {
+  background: #fff;
+    border-radius: 15px;
+    padding-top: 20px;
+    color: #000;
+}
+
 .land-calculator .table-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -129,9 +137,7 @@ a {
 
   /* Ensure table wrapper takes full width and scrolls properly on mobile */
   .land-calculator .table-wrapper {
-    width: 100vw;
-    margin-left: -10px;
-    margin-right: -10px;
+    width: 100%;  
     padding: 0 10px;
     box-sizing: border-box;
     border-radius: 6px;
@@ -139,7 +145,7 @@ a {
 
   /* Make table cells more compact on mobile */
   .land-calculator table {
-    min-width: 600px; /* Slightly smaller for mobile */
+    min-width: auto; /* Slightly smaller for mobile */
     font-size: 12px;
   }
 
@@ -189,13 +195,11 @@ a {
   }
 
   .land-calculator .table-wrapper {
-    margin-left: -8px;
-    margin-right: -8px;
     padding: 0 8px;
   }
 
   .land-calculator table {
-    min-width: 550px;
+    min-width: auto;
     font-size: 11px;
   }
 
