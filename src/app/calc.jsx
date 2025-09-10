@@ -67,29 +67,29 @@ export default function LandDealCalculator() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Land Deal Calculator</h2>
-
-      <div style={{ marginBottom: "10px" }}>
-        <label>
-          Global Avg Rate (per sq ft):{" "}
-          <input
-            type="number"
-            value={rate}
-            onChange={(e) => setRate(Number(e.target.value))}
-          />
-        </label>
-        <label style={{ marginLeft: "20px" }}>
-          <input
-            type="checkbox"
-            checked={useActual}
-            onChange={(e) => setUseActual(e.target.checked)}
-          />{" "}
-          Use Actual Area (uncheck for Paper Area)
-        </label>
-      </div>
-
-      <table border={1} cellPadding={5} style={{ borderCollapse: "collapse" }}>
+    <div className="land-calculator">
+    <h2>Land Deal Calculator</h2>
+  
+    <div className="controls">
+      <label>
+        Global Avg Rate (per sq ft):{" "}
+        <input
+          type="number"
+          value={rate}
+          onChange={(e) => setRate(Number(e.target.value))}
+        />
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          checked={useActual}
+          onChange={(e) => setUseActual(e.target.checked)}
+        />
+        Use Actual Area
+      </label>
+    </div>
+  
+    <table border={1} cellPadding={5} style={{ borderCollapse: "collapse" }}>
         <thead>
           <tr>
             <th>Farm No</th>
@@ -124,10 +124,9 @@ export default function LandDealCalculator() {
           })}
         </tbody>
       </table>
-
-      <h3 style={{ marginTop: "15px" }}>
-        Total Value: {formatCurrency(totalValue)}
-      </h3>
-    </div>
+  
+    <h3>Total Value: {formatCurrency(totalValue)}</h3>
+  </div>
+  
   );
 }
