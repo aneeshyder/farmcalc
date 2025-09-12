@@ -7,6 +7,7 @@ const FARMS = [
   { id: 3, farmNo: 988, paperArea: 4679, actualArea: 4439 },
   { id: 4, farmNo: 893, paperArea: 4679, actualArea: 4624 },
   { id: 5, farmNo: 894, paperArea: 4557, actualArea: 4518 },
+  { id: 6, farmNo: 987, paperArea: 407, actualArea: 453 },
 ];
 
 // 1 sq mt = 10.7639 sq ft
